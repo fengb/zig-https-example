@@ -16,6 +16,15 @@ pub fn build(b: *Builder) void {
     exe.setBuildMode(mode);
     exe.install();
 
+    exe.addPackage(.{
+        .name = "hzzp",
+        .path = "lib/hzzp/src/main.zig",
+    });
+    exe.addPackage(.{
+        .name = "iguanaTLS",
+        .path = "lib/iguanaTLS/src/main.zig",
+    });
+
     const run_cmd = exe.run();
     run_cmd.step.dependOn(b.getInstallStep());
     if (b.args) |args| {
